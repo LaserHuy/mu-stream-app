@@ -5,7 +5,7 @@ export interface MovieProps {
     id: number;
     title: string;
     release_date: string;
-    poster: string;
+    poster_path: string;
     genres: string[];
     vote_average: number;
     original_language: string;
@@ -38,5 +38,10 @@ export interface SearchProps {
 export interface TrendingProps {
     $id: string;
     title: string;
-    poster: string;
+    poster_path: string;
+}
+
+//Hero Props
+export interface HeroProps {
+    images: string[];
 }

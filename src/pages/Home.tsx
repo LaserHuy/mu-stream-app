@@ -1,15 +1,21 @@
 import React from "react";
 import Layout from "../Layout/Layout";
-import { useMovieSearch } from "../hooks/useMovie";
+import { useMovieSearch, useTrendingMovies } from "../hooks/useMovie";
 import CircularBarsSpinnerLoader from "../components/Spinner";
+import MovieCard from "../components/MovieCard";
+import Hero from "../components/Hero";
 
 const Home: React.FC = () => {
     const { searchTerm, setSearchTerm, movies, isLoading, error } = useMovieSearch();
+    const { trending } = useTrendingMovies();
+
+    const trendingImages = trending.map((movie) => `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`);
+
     return (
         <Layout searchTerm={searchTerm} setSearchTerm={setSearchTerm}>
-            <h1>Home Mu Stream</h1>
+            <Hero images={trendingImages}/>
             <section className="all-movies">
-                <h2>All Movies</h2>
+                <h2>Search Movies</h2>
                 {isLoading ? (
                     <CircularBarsSpinnerLoader />
                 ) : error ? (
@@ -17,7 +23,9 @@ const Home: React.FC = () => {
                 ) : (
                     <ul>
                         {movies.map((movie) => (
-                            movie.title
+                            <li key={movie.id}>
+                                <MovieCard movie={movie} />
+                            </li>
                         ))}
                     </ul>
                 )}
