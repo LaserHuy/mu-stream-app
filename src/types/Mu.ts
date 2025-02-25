@@ -9,6 +9,8 @@ export interface MovieProps {
     genres: string[];
     vote_average: number;
     original_language: string;
+    belongs_to_collection: string;
+    overview: string;
     runtime: number;
 }
 

@@ -126,3 +126,39 @@ export const useTrendingMovies = () => {
 
     return { trending, isLoading, error }
 }
+
+//get movie cast
+
+export const useMovieCast = (id: number) => {
+    const [cast, setCast] = useState<MovieProps[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchMovieCast = async () => {
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/movie/${id}/credits`, API_OPTIONS)
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch movie cast')
+            }
+
+            const data = await response.json()
+            setCast(data.cast as MovieProps[] || [])
+
+        } catch (error) {
+            console.error(`Error fetching movie cast: ${error}`)
+            setError('Error fetching movie cast. Please try again later.')
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        fetchMovieCast()
+    }, [])
+
+    return { cast, isLoading, error }
+}

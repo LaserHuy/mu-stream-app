@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import React, { useEffect, useState } from "react";
 
 const ImagesSlider = ({
-  images= [],
+  images = [],
   children,
   overlay = true,
   overlayClassName,
@@ -23,27 +23,28 @@ const ImagesSlider = ({
   const [loading, setLoading] = useState(false);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
 
+  console.log("Images prop:", images);
+
   const handleNext = () => {
-    console.log("Next image");
     setCurrentIndex((prevIndex) =>
       prevIndex + 1 === images.length ? 0 : prevIndex + 1
     );
   };
 
   const handlePrevious = () => {
-    console.log("Previous image");
     setCurrentIndex((prevIndex) =>
       prevIndex - 1 < 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
   useEffect(() => {
-    console.log("Loading images");
+    console.log("useEffect triggered: loading images");
     loadImages();
   }, [images]);
 
   const loadImages = () => {
     setLoading(true);
+    console.log("Loading images...");
     const loadPromises = images.map((image) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
@@ -63,7 +64,7 @@ const ImagesSlider = ({
       .then((loadedImages) => {
         setLoadedImages(loadedImages as string[]);
         setLoading(false);
-        console.log("All images loaded");
+        console.log("All images loaded:", loadedImages);
       })
       .catch((error) => {
         console.error("Failed to load images", error);
@@ -132,7 +133,7 @@ const ImagesSlider = ({
   return (
     <div
       className={cn(
-        "overflow-hidden h-full w-full relative flex items-center justify-center",
+        "overflow-hidden h-screen w-screen relative flex items-center justify-center",
         className
       )}
       style={{
@@ -155,7 +156,7 @@ const ImagesSlider = ({
             animate="visible"
             exit={direction === "up" ? "upExit" : "downExit"}
             variants={slideVariants}
-            className="image h-auto w-full absolute inset-0 object-cover object-center"
+            className="image h-auto w-screen absolute inset-0 object-cover object-center"
           />
         </AnimatePresence>
       )}

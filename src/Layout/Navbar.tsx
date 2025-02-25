@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { NavProps } from "../types/Mu";
 import { Search } from "lucide-react";
 import { NavData } from "../data/Data";
-import SearchBar from "../components/Search";
+import SearchBar from "./SearchBar";
 
 const Navbar: React.FC<NavProps> = ({ title, url, searchTerm, setSearchTerm  }) => {
     const location = useLocation();

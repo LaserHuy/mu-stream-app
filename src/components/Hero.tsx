@@ -6,7 +6,7 @@ import { HeroProps } from "../types/Mu";
 
 const Hero: React.FC<HeroProps> = ({ images }) => {
     return (
-        <ImagesSlider images={images}>
+        <ImagesSlider images={images} autoplay={true} direction="up">
             <motion.div
                 initial={{
                     opacity: 0,
@@ -27,10 +27,6 @@ const Hero: React.FC<HeroProps> = ({ images }) => {
                 <motion.p className="text-center text-lg md:text-2xl text-neutral-300 mt-4">
                 The search is ready! Watch your favorite movies and TV shows with us.
                 </motion.p>
-                <button className="px-4 py-2 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
-                    <span>Join now →</span>
-                    <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" />
-                </button>
             </motion.div>
         </ImagesSlider>
     );
