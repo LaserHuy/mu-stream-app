@@ -1,7 +1,7 @@
 import React from "react";
 import { MovieProps } from "../types/Mu";
 import { Link } from "react-router-dom";
-import FlexMovieItems from "./FlexMovieItems";
+import FlexMovieItems from "./ui/FlexMovieItems";
 import { Share2, Play } from "lucide-react";
 
 const MovieInfo: React.FC<MovieProps> = ({ 

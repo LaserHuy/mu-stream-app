@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import ImagesSlider from "./images-slider";
+import ImagesSlider from "./ui/images-slider";
 import { HeroProps } from "../types/Mu";
 
 

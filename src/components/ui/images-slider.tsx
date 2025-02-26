@@ -1,4 +1,4 @@
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 import { motion, AnimatePresence } from "motion/react";
 import React, { useEffect, useState } from "react";
 
@@ -23,8 +23,6 @@ const ImagesSlider = ({
   const [loading, setLoading] = useState(false);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
 
-  console.log("Images prop:", images);
-
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex + 1 === images.length ? 0 : prevIndex + 1
@@ -38,19 +36,16 @@ const ImagesSlider = ({
   };
 
   useEffect(() => {
-    console.log("useEffect triggered: loading images");
     loadImages();
   }, [images]);
 
   const loadImages = () => {
     setLoading(true);
-    console.log("Loading images...");
     const loadPromises = images.map((image) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
         img.src = image;
         img.onload = () => {
-          console.log(`Image loaded: ${image}`);
           resolve(image);
         };
         img.onerror = (error) => {
@@ -64,7 +59,6 @@ const ImagesSlider = ({
       .then((loadedImages) => {
         setLoadedImages(loadedImages as string[]);
         setLoading(false);
-        console.log("All images loaded:", loadedImages);
       })
       .catch((error) => {
         console.error("Failed to load images", error);

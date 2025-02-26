@@ -1,8 +1,8 @@
 import React from "react";
 import Layout from "../Layout/Layout";
 import { useMovieSearch, useTrendingMovies } from "../hooks/useMovie";
-import CircularBarsSpinnerLoader from "../components/Spinner";
-import MovieCard from "../components/MovieCard";
+import CircularBarsSpinnerLoader from "../components/ui/Spinner";
+import MovieCard from "../components/ui/MovieCard";
 import Hero from "../components/Hero";
 
 const Home: React.FC = () => {

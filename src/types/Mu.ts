@@ -47,3 +47,10 @@ export interface TrendingProps {
 export interface HeroProps {
     images: string[];
 }
+
+// Casts Props
+export interface CastsProps {
+    id: number;
+    name: string;
+    profile_path: string;
+}

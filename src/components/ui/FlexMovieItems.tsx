@@ -1,5 +1,5 @@
 import React from "react";
-import { MovieProps } from "../types/Mu";
+import { MovieProps } from "../../types/Mu";
 import { CalendarDays, Clock }from "lucide-react";
 
 const FlexMovieItems: React.FC<MovieProps> = ({
