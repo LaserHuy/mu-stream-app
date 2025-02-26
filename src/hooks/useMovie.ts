@@ -88,9 +88,9 @@ export const useMovie = (id: number) => {
 
     useEffect(() => {
         fetchMovie()
-    }, [])
+    }, [id])
 
-    return { movie, isLoading, error }
+    return { movie, isLoading, error, refetch: fetchMovie }
 }
 
 //get trending movies
@@ -161,4 +161,39 @@ export const useMovieCast = (id: number) => {
     }, [])
 
     return { cast, isLoading, error }
+}
+
+//get related movies by genre and only show 5
+export const useRelatedMovies = (id: number) => {
+    const [relatedMovies, setRelatedMovies] = useState<MovieProps[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchRelatedMovies = async () => {
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/movie/${id}/similar`, API_OPTIONS)
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch related movies')
+            }
+
+            const data = await response.json()
+            setRelatedMovies(data.results.slice(0, 5) as MovieProps[] || [])
+
+        } catch (error) {
+            console.error(`Error fetching related movies: ${error}`)
+            setError('Error fetching related movies. Please try again later.')
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        fetchRelatedMovies()
+    }, [])
+
+    return { relatedMovies, isLoading, error }
 }

@@ -18,8 +18,8 @@ const MovieCard: React.FC<MovieProps> = ({
         <div className="movie-card">
             <Link to={`/movie/${id}`}>
                 <img src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : `/no-movie.png`} alt={title} />
-                <div className="mt-4">
-                    <h3>{title}</h3>
+                <div className="mt-4 ">
+                    <h3 className="relative text-wrap overflow-hidden ">{title}</h3>
 
                     <div className="content">
                         <div className="rating">
