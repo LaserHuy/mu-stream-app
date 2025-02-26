@@ -1,5 +1,4 @@
-import React, { use, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
 import Layout from "../Layout/Layout";
 import MovieInfo from "../components/MovieInfo";
 import MovieCasts from "../components/MovieCasts";
@@ -7,18 +6,19 @@ import { useMovie, useMovieCast, useRelatedMovies } from "../hooks/useMovie";
 import CircularBarsSpinnerLoader from "../components/ui/Spinner";
 import MovieRelated from "../components/MovieRelated";
 
+interface MovieDetailProps {
+    id: number;
+}
 
-const MovieDetail: React.FC = () => {
-    const { id } = useParams();
-    const { movie, isLoading, error, refetch: refetchMovie } = useMovie(Number(id));
-    const { cast, isLoading: isLoadingCast, error: errorCast } = useMovieCast(Number(id));
-    const { relatedMovies } = useRelatedMovies(Number(id));
-    console.log(relatedMovies);
+const MovieDetail: React.FC<MovieDetailProps> = ({ id }) => {
+    const { movie, isLoading, error, refetch: refetchMovie } = useMovie(id);
+    const { cast, isLoading: isLoadingCast, error: errorCast } = useMovieCast(id);
+    const { relatedMovies } = useRelatedMovies(id);
+    console.log(id);
 
     useEffect(() => {
-        refetchMovie();
-    }
-    , [id]);
+        window.scrollTo(0, 0);
+    }, [id]);
 
     return (
         <Layout>

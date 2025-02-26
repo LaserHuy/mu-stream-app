@@ -158,9 +158,9 @@ export const useMovieCast = (id: number) => {
 
     useEffect(() => {
         fetchMovieCast()
-    }, [])
+    }, [id])
 
-    return { cast, isLoading, error }
+    return { cast, isLoading, error, refetch: fetchMovieCast }
 }
 
 //get related movies by genre and only show 5
@@ -193,7 +193,7 @@ export const useRelatedMovies = (id: number) => {
 
     useEffect(() => {
         fetchRelatedMovies()
-    }, [])
+    }, [id])
 
-    return { relatedMovies, isLoading, error }
+    return { relatedMovies, isLoading, error, refetch: fetchRelatedMovies }
 }
